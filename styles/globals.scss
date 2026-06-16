@@ -1,0 +1,85 @@
+// Public-site global styles.
+// NOTE: builder-ui tokens (@use '../components/builder-ui/tokens') and themes
+// are intentionally NOT imported here — they belong to the root builder app
+// only. This file is a clean copy containing only the brand/site tokens and
+// base resets that the public frontend needs.
+
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #111111;
+  --color-border: #e5e5e5;
+
+  --pt-color-polytan-green: #248739;
+  --pt-color-sylver: #8c9091;
+  --pt-color-dark-gray: #616161;
+  --pt-color-mist-gray: #dddddd;
+  --pt-color-soft-gray: #f5f5f5;
+  --pt-color-white: #ffffff;
+  --pt-color-off-black: #1e2328;
+  --pt-color-ligaturf: #78d64b;
+  --pt-color-ligagrass: #006934;
+  --pt-color-poligras: #171c8f;
+  --pt-color-laykold: #0191da;
+  --pt-color-rekortan: #ba0c2f;
+  --pt-color-polyplay: #f78121;
+  --pt-color-green-technology: #52a747;
+  --pt-color-smart-orange: #ff5c39;
+  --pt-color-smart-anthracite: #333f48;
+
+  /* SP-A: per-brand rgb + contrast baseline (overridable per project theme). */
+  --pt-color-polytan-green-rgb: 36, 135, 57;
+  --pt-color-polytan-green-contrast: #ffffff;
+  --pt-color-sylver-rgb: 140, 144, 145;
+  --pt-color-sylver-contrast: #ffffff;
+  --pt-color-ligaturf-rgb: 120, 214, 75;
+  --pt-color-ligaturf-contrast: #ffffff;
+  --pt-color-ligagrass-rgb: 0, 105, 52;
+  --pt-color-ligagrass-contrast: #ffffff;
+  --pt-color-poligras-rgb: 23, 28, 143;
+  --pt-color-poligras-contrast: #ffffff;
+  --pt-color-laykold-rgb: 1, 145, 218;
+  --pt-color-laykold-contrast: #ffffff;
+  --pt-color-rekortan-rgb: 186, 12, 47;
+  --pt-color-rekortan-contrast: #ffffff;
+  --pt-color-polyplay-rgb: 247, 129, 33;
+  --pt-color-polyplay-contrast: #ffffff;
+  --pt-color-green-technology-rgb: 82, 167, 71;
+  --pt-color-green-technology-contrast: #ffffff;
+  --pt-color-smart-orange-rgb: 255, 92, 57;
+  --pt-color-smart-orange-contrast: #ffffff;
+  --pt-color-smart-anthracite-rgb: 51, 63, 72;
+  --pt-color-smart-anthracite-contrast: #ffffff;
+
+  --pt-font-body: "Helvetica Neue", Arial, sans-serif;
+  --pt-font-display: var(--pt-font-body);
+
+  --pt-text-xs: 0.875rem;
+  --pt-text-sm: 1rem;
+  --pt-text-md: 1.125rem;
+  --pt-text-lg: 1.375rem;
+  --pt-text-xl: 1.875rem;
+  --pt-display-sm: clamp(1.75rem, 3.6vw, 2.9167rem);
+  --pt-display-md: clamp(2.1875rem, 6vw, 5rem);
+  --pt-display-lg: clamp(2.8125rem, 8vw, 7.5rem);
+
+  --pt-line-heading: 1.5;
+  --pt-line-tight: var(--pt-line-heading);
+  --pt-line-control: 1.3;
+  --pt-line-copy: 1.3;
+  --pt-letter-heading: 0.015em;
+  --pt-letter-copy: 0;
+  --pt-transition: 180ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: system-ui, sans-serif;
+}
