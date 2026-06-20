@@ -3,9 +3,8 @@ export function DynamicStub({ path }: { path: string }) {
     <main style={{ padding: 24, fontFamily: 'sans-serif' }}>
       <h1>Dynamischer Inhalt</h1>
       <p>
-        Diese Route (<code>{path}</code>) benötigt die Weftly Content-API (SP-B)
-        — Item-Detail, Collection-Listen, Sitemap usw. sind in SP-C1 noch nicht
-        DB-los verfügbar.
+        Diese Route (<code>{path}</code>) hat keinen veröffentlichten Weftly
+        Snapshot. Prüfe Projekt-ID, Locale und CDN-Konfiguration.
       </p>
     </main>
   )

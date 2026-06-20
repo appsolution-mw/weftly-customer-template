@@ -5,6 +5,7 @@ const pullzoneHost = process.env.NEXT_PUBLIC_BUNNY_PULLZONE_HOSTNAME
 const nextConfig: NextConfig = {
   output: 'standalone',
   transpilePackages: ['@weftly/runtime', '@weftly/loader', '@weftly/host'],
+  turbopack: { root: process.cwd() },
   experimental: { turbopackFileSystemCacheForDev: false },
   images: {
     remotePatterns: pullzoneHost
