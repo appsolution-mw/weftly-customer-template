@@ -13,9 +13,9 @@
     "test": "node --import tsx --test lib/*.test.ts"
   },
   "dependencies": {
-    "@weftly/host": "^0.1.2",
-    "@weftly/loader": "^0.1.2",
-    "@weftly/runtime": "^0.1.1",
+    "@weftly/host": "^0.2.0",
+    "@weftly/loader": "^0.2.0",
+    "@weftly/runtime": "^0.2.0",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"
