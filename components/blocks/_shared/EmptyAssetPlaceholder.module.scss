@@ -1,0 +1,23 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 8rem;
+  padding: 1.5rem;
+  border: 1px dashed #9ca3af;
+  background: #f8f9fa;
+  color: #4b5563;
+  font-family: var(--pt-font-body, system-ui);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.icon {
+  opacity: 0.6;
+}
+
+.label {
+  font-weight: 500;
+}

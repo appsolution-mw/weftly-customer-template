@@ -1,0 +1,34 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 1rem;
+  font-size: var(--pt-display-lg);
+  text-wrap: balance;
+}
+
+.teaser {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 1.5rem;
+  max-width: 40rem;
+  font-family: var(--pt-font-body);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.3;
+}

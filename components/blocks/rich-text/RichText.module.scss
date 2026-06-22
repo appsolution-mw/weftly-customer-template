@@ -1,0 +1,112 @@
+.richText {
+  --pt-block-max-width: var(--pt-block-max-width-desktop, 100%);
+
+  width: 100%;
+  max-width: var(--pt-block-max-width, 100%);
+  color: var(--pt-rich-text-color, var(--pt-color-dark-gray));
+  --pt-action-color: var(--pt-color-polytan-green);
+}
+
+.richText :global(:where(p, ul, ol, blockquote, h1, h2, h3, h4, h5, h6)) {
+  margin-top: 0;
+}
+
+.richText :global(:where(p, ul, ol, blockquote)) {
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.richText :global(:where(h1, h2, h3, h4, h5, h6)) {
+  margin-bottom: 0.65rem;
+  line-height: 1;
+}
+
+.richText :global(blockquote) {
+  padding-left: 1rem;
+  border-left: 3px solid currentColor;
+  opacity: 0.82;
+}
+
+.richText :global(a) {
+  color: var(--pt-action-color, var(--pt-color-polytan-green));
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.richText[data-size="xs"] {
+  font-size: var(--pt-text-xs);
+}
+
+.richText[data-size="s"] {
+  font-size: var(--pt-text-sm);
+}
+
+.richText[data-size="m"] {
+  font-size: var(--pt-text-md);
+}
+
+.richText[data-size="l"] {
+  font-size: var(--pt-text-lg);
+}
+
+.richText[data-size="xl"] {
+  font-size: var(--pt-text-xl);
+}
+
+.richText[data-size="xxl"] {
+  font-size: var(--pt-display-sm);
+}
+
+@media screen and (max-width: 1024px) {
+  .richText {
+    --pt-block-max-width: var(
+      --pt-block-max-width-tablet-landscape,
+      var(--pt-block-max-width-desktop, 100%)
+    );
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .richText {
+    --pt-block-max-width: var(
+      --pt-block-max-width-tablet-portrait,
+      var(
+        --pt-block-max-width-tablet-landscape,
+        var(--pt-block-max-width-desktop, 100%)
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .richText {
+    --pt-block-max-width: var(
+      --pt-block-max-width-mobile-landscape,
+      var(
+        --pt-block-max-width-tablet-portrait,
+        var(
+          --pt-block-max-width-tablet-landscape,
+          var(--pt-block-max-width-desktop, 100%)
+        )
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .richText {
+    --pt-block-max-width: var(
+      --pt-block-max-width-mobile-portrait,
+      var(
+        --pt-block-max-width-mobile-landscape,
+        var(
+          --pt-block-max-width-tablet-portrait,
+          var(
+            --pt-block-max-width-tablet-landscape,
+            var(--pt-block-max-width-desktop, 100%)
+          )
+        )
+      )
+    );
+  }
+}

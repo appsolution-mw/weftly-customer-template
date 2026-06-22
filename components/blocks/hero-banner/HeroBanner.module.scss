@@ -1,0 +1,168 @@
+.heroBanner {
+  --pt-hero-banner-aspect-ratio: 16 / 9;
+  --pt-hero-banner-height: 56.25vw;
+  --pt-hero-banner-section-inset: 1rem;
+  --pt-hero-banner-padding-y: 4rem;
+  --pt-hero-banner-panel-width: min(100%, 54rem);
+  --pt-hero-banner-viewport-height: var(--pt-preview-viewport-height, 100vh);
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: min(var(--pt-hero-banner-viewport-height), var(--pt-hero-banner-height));
+  min-height: 36rem;
+  max-height: var(--pt-hero-banner-viewport-height);
+  aspect-ratio: var(--pt-hero-banner-aspect-ratio);
+  background:
+    linear-gradient(135deg, rgba(82, 167, 71, 0.86), rgba(0, 105, 52, 0.92)),
+    var(--pt-color-ligagrass);
+  color: var(--pt-color-white);
+}
+
+.media,
+.picture,
+.placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+.picture,
+.placeholder {
+  overflow: hidden;
+}
+
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.contentLayer {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: calc(
+    100% - var(--pt-hero-banner-section-inset) - var(--pt-hero-banner-section-inset)
+  );
+  height: 100%;
+  padding-top: var(--pt-hero-banner-padding-y);
+  padding-bottom: var(--pt-hero-banner-padding-y);
+}
+
+.contentPanel {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  width: var(--pt-hero-banner-panel-width);
+  gap: 1.25rem;
+}
+
+.contentPanel > :where(h1, h2, h3, h4, h5, h6) {
+  margin-bottom: 0;
+}
+
+.contentImage {
+  width: min(18rem, 40vw);
+  max-width: 100%;
+}
+
+.heroBanner[data-content-position="top-left"] .contentPanel,
+.heroBanner[data-content-position="center-left"] .contentPanel,
+.heroBanner[data-content-position="bottom-left"] .contentPanel {
+  justify-self: start;
+}
+
+.heroBanner[data-content-position="top-center"] .contentPanel,
+.heroBanner[data-content-position="center-center"] .contentPanel,
+.heroBanner[data-content-position="bottom-center"] .contentPanel {
+  justify-self: center;
+}
+
+.heroBanner[data-content-position="top-right"] .contentPanel,
+.heroBanner[data-content-position="center-right"] .contentPanel,
+.heroBanner[data-content-position="bottom-right"] .contentPanel {
+  justify-self: end;
+}
+
+.heroBanner[data-content-position="top-left"] .contentPanel,
+.heroBanner[data-content-position="top-center"] .contentPanel,
+.heroBanner[data-content-position="top-right"] .contentPanel {
+  align-self: start;
+}
+
+.heroBanner[data-content-position="center-left"] .contentPanel,
+.heroBanner[data-content-position="center-center"] .contentPanel,
+.heroBanner[data-content-position="center-right"] .contentPanel {
+  align-self: center;
+}
+
+.heroBanner[data-content-position="bottom-left"] .contentPanel,
+.heroBanner[data-content-position="bottom-center"] .contentPanel,
+.heroBanner[data-content-position="bottom-right"] .contentPanel {
+  align-self: end;
+}
+
+@media screen and (max-width: 767px) {
+  .heroBanner {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+    overflow: visible;
+    background:
+      linear-gradient(135deg, rgba(120, 214, 75, 0.94), rgba(0, 105, 52, 1)),
+      var(--pt-color-ligagrass);
+  }
+
+  .media {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    aspect-ratio: var(
+      --pt-hero-banner-mobile-aspect-ratio,
+      var(--pt-hero-banner-aspect-ratio)
+    );
+    background: var(--pt-color-soft-gray);
+  }
+
+  .placeholder {
+    position: relative;
+    min-height: 18rem;
+  }
+
+  .contentLayer {
+    display: block;
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .contentPanel {
+    width: 100%;
+    max-width: none;
+    gap: 1rem;
+  }
+
+  .contentImage {
+    width: min(9rem, 42vw);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contentLayer {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}

@@ -1,0 +1,659 @@
+.card {
+  --pt-card-grid-template-columns: var(
+    --pt-card-grid-template-columns-desktop,
+    minmax(0, 1fr)
+  );
+  --pt-card-grid-template-areas: var(
+    --pt-card-grid-template-areas-desktop,
+    "image" "content"
+  );
+  --pt-card-justify-items: var(--pt-card-justify-items-desktop, start);
+  --pt-card-text-align: var(--pt-card-text-align-desktop, left);
+  --pt-card-align-items: var(--pt-card-align-items-desktop, flex-start);
+  --pt-card-align-content: var(--pt-card-align-content-desktop, start);
+  --pt-card-image-padding: var(--pt-card-image-padding-desktop, 0);
+  --pt-card-content-padding: var(--pt-card-content-padding-desktop, clamp(1rem, 3vw, 1.5rem));
+  --pt-card-gap: var(--pt-card-gap-desktop, 1.25rem);
+  --pt-card-image-width: var(
+    --pt-card-image-width-desktop,
+    repeat(2, minmax(0, 1fr))
+  );
+  --pt-card-min-height: var(--pt-card-min-height-desktop, auto);
+
+  container: card / inline-size;
+  width: 100%;
+  min-height: var(--pt-card-min-height);
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.layout {
+  display: grid;
+  width: 100%;
+  grid-template-columns: var(--pt-card-grid-template-columns, minmax(0, 1fr));
+  grid-template-areas: var(--pt-card-grid-template-areas, "image" "content");
+}
+
+.bgWhite {
+  background: #ffffff;
+}
+
+.bgLightGrey {
+  background: #dddddd;
+}
+
+.bgBrand {
+  background: var(--pt-section-bg, #ffffff);
+}
+
+.card[data-shadow='none'] {
+  box-shadow: none;
+}
+
+.card[data-shadow='small'] {
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 8%);
+}
+
+.card[data-shadow='medium'] {
+  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 12%);
+}
+
+.card[data-shadow='large'] {
+  box-shadow: 0 1.25rem 2.5rem rgb(0 0 0 / 16%);
+}
+
+.card[data-gap='none'] .layout {
+  --pt-card-gap-desktop: 0;
+}
+
+.card[data-gap='small'] .layout {
+  --pt-card-gap-desktop: 0.75rem;
+}
+
+.card[data-gap='medium'] .layout {
+  --pt-card-gap-desktop: 1.25rem;
+}
+
+.card[data-gap='large'] .layout {
+  --pt-card-gap-desktop: 2rem;
+}
+
+.imageSlot,
+.contentSlot {
+  min-width: 0;
+}
+
+.imageSlot {
+  display: grid;
+  align-items: stretch;
+  grid-area: image;
+}
+
+.imageSlot > :global(figure) {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.imageSlot :global(img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contentSlot {
+  display: grid;
+  gap: 1rem;
+  grid-area: content;
+}
+
+.card[data-image-padding='none'] .imageSlot {
+  --pt-card-image-padding-desktop: 0;
+}
+
+.card[data-image-padding='small'] .imageSlot {
+  --pt-card-image-padding-desktop: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.card[data-image-padding='medium'] .imageSlot {
+  --pt-card-image-padding-desktop: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.card[data-image-padding='large'] .imageSlot {
+  --pt-card-image-padding-desktop: clamp(1rem, 3vw, 2rem);
+}
+
+.card[data-content-padding='none'] .contentSlot {
+  --pt-card-content-padding-desktop: 0;
+}
+
+.card[data-content-padding='small'] .contentSlot {
+  --pt-card-content-padding-desktop: clamp(0.75rem, 2vw, 1rem);
+}
+
+.card[data-content-padding='medium'] .contentSlot {
+  --pt-card-content-padding-desktop: clamp(1rem, 3vw, 1.5rem);
+}
+
+.card[data-content-padding='large'] .contentSlot {
+  --pt-card-content-padding-desktop: clamp(1.25rem, 4vw, 2rem);
+}
+
+.card[data-min-height='auto'] {
+  --pt-card-min-height-desktop: auto;
+}
+
+.card[data-min-height='small'] {
+  --pt-card-min-height-desktop: 18rem;
+}
+
+.card[data-min-height='medium'] {
+  --pt-card-min-height-desktop: 24rem;
+}
+
+.card[data-min-height='large'] {
+  --pt-card-min-height-desktop: 32rem;
+}
+
+.card[data-content-align$='left'] {
+  --pt-card-justify-items-desktop: start;
+  --pt-card-text-align-desktop: left;
+}
+
+.card[data-content-align$='center'] {
+  --pt-card-justify-items-desktop: center;
+  --pt-card-text-align-desktop: center;
+}
+
+.card[data-content-align$='right'] {
+  --pt-card-justify-items-desktop: end;
+  --pt-card-text-align-desktop: right;
+}
+
+.card[data-content-align='top-left'],
+.card[data-content-align='top-center'],
+.card[data-content-align='top-right'] {
+  --pt-card-align-items-desktop: flex-start;
+  --pt-card-align-content-desktop: start;
+}
+
+.card[data-content-align='center-left'],
+.card[data-content-align='center-center'],
+.card[data-content-align='center-right'] {
+  --pt-card-align-items-desktop: center;
+  --pt-card-align-content-desktop: center;
+}
+
+.card[data-content-align='bottom-left'],
+.card[data-content-align='bottom-center'],
+.card[data-content-align='bottom-right'] {
+  --pt-card-align-items-desktop: flex-end;
+  --pt-card-align-content-desktop: end;
+}
+
+.card[data-layout='horizontal'][data-has-image='true'][data-image-width='40-60'] .layout {
+  --pt-card-image-width-desktop: minmax(0, 40%) minmax(0, 60%);
+}
+
+.card[data-layout='horizontal'][data-has-image='true'][data-image-width='50-50'] .layout {
+  --pt-card-image-width-desktop: repeat(2, minmax(0, 1fr));
+}
+
+.card[data-layout='horizontal'][data-has-image='true'][data-image-width='60-40'] .layout {
+  --pt-card-image-width-desktop: minmax(0, 60%) minmax(0, 40%);
+}
+
+.card[data-layout='horizontal'][data-has-image='true'] .layout {
+  --pt-card-grid-template-columns-desktop: var(--pt-card-image-width);
+  --pt-card-grid-template-areas-desktop: "image content";
+}
+
+.card[data-layout='vertical'][data-column-order='content-image'] .layout {
+  --pt-card-grid-template-areas-desktop: "content" "image";
+}
+
+.card[data-layout='horizontal'][data-column-order='content-image'] .layout {
+  --pt-card-grid-template-areas-desktop: "content image";
+}
+
+.card[data-layout='horizontal'][data-has-image='true'][data-column-order='content-image'][data-image-width='40-60'] .layout {
+  --pt-card-image-width-desktop: minmax(0, 60%) minmax(0, 40%);
+}
+
+.card[data-layout='horizontal'][data-has-image='true'][data-column-order='content-image'][data-image-width='60-40'] .layout {
+  --pt-card-image-width-desktop: minmax(0, 40%) minmax(0, 60%);
+}
+
+.layout {
+  gap: var(--pt-card-gap);
+}
+
+.imageSlot {
+  padding: var(--pt-card-image-padding);
+}
+
+.contentSlot {
+  padding: var(--pt-card-content-padding);
+  justify-items: var(--pt-card-justify-items);
+  text-align: var(--pt-card-text-align);
+  align-items: var(--pt-card-align-items);
+  align-content: var(--pt-card-align-content);
+}
+
+.card[data-layout='horizontal'][data-has-image='true'] .imageSlot,
+.card[data-layout='horizontal'][data-has-image='true'] .contentSlot {
+  min-height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    --pt-card-grid-template-columns: var(
+      --pt-card-grid-template-columns-tablet-landscape,
+      var(--pt-card-grid-template-columns-desktop, minmax(0, 1fr))
+    );
+    --pt-card-grid-template-areas: var(
+      --pt-card-grid-template-areas-tablet-landscape,
+      var(--pt-card-grid-template-areas-desktop, "image" "content")
+    );
+    --pt-card-justify-items: var(
+      --pt-card-justify-items-tablet-landscape,
+      var(--pt-card-justify-items-desktop, start)
+    );
+    --pt-card-text-align: var(
+      --pt-card-text-align-tablet-landscape,
+      var(--pt-card-text-align-desktop, left)
+    );
+    --pt-card-align-items: var(
+      --pt-card-align-items-tablet-landscape,
+      var(--pt-card-align-items-desktop, flex-start)
+    );
+    --pt-card-align-content: var(
+      --pt-card-align-content-tablet-landscape,
+      var(--pt-card-align-content-desktop, start)
+    );
+    --pt-card-image-padding: var(
+      --pt-card-image-padding-tablet-landscape,
+      var(--pt-card-image-padding-desktop, 0)
+    );
+    --pt-card-content-padding: var(
+      --pt-card-content-padding-tablet-landscape,
+      var(--pt-card-content-padding-desktop, clamp(1rem, 3vw, 1.5rem))
+    );
+    --pt-card-gap: var(
+      --pt-card-gap-tablet-landscape,
+      var(--pt-card-gap-desktop, 1.25rem)
+    );
+    --pt-card-image-width: var(
+      --pt-card-image-width-tablet-landscape,
+      var(--pt-card-image-width-desktop, repeat(2, minmax(0, 1fr)))
+    );
+    --pt-card-min-height: var(
+      --pt-card-min-height-tablet-landscape,
+      var(--pt-card-min-height-desktop, auto)
+    );
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    --pt-card-grid-template-columns: var(
+      --pt-card-grid-template-columns-tablet-portrait,
+      var(
+        --pt-card-grid-template-columns-tablet-landscape,
+        var(--pt-card-grid-template-columns-desktop, minmax(0, 1fr))
+      )
+    );
+    --pt-card-grid-template-areas: var(
+      --pt-card-grid-template-areas-tablet-portrait,
+      var(
+        --pt-card-grid-template-areas-tablet-landscape,
+        var(--pt-card-grid-template-areas-desktop, "image" "content")
+      )
+    );
+    --pt-card-justify-items: var(
+      --pt-card-justify-items-tablet-portrait,
+      var(
+        --pt-card-justify-items-tablet-landscape,
+        var(--pt-card-justify-items-desktop, start)
+      )
+    );
+    --pt-card-text-align: var(
+      --pt-card-text-align-tablet-portrait,
+      var(
+        --pt-card-text-align-tablet-landscape,
+        var(--pt-card-text-align-desktop, left)
+      )
+    );
+    --pt-card-align-items: var(
+      --pt-card-align-items-tablet-portrait,
+      var(
+        --pt-card-align-items-tablet-landscape,
+        var(--pt-card-align-items-desktop, flex-start)
+      )
+    );
+    --pt-card-align-content: var(
+      --pt-card-align-content-tablet-portrait,
+      var(
+        --pt-card-align-content-tablet-landscape,
+        var(--pt-card-align-content-desktop, start)
+      )
+    );
+    --pt-card-image-padding: var(
+      --pt-card-image-padding-tablet-portrait,
+      var(
+        --pt-card-image-padding-tablet-landscape,
+        var(--pt-card-image-padding-desktop, 0)
+      )
+    );
+    --pt-card-content-padding: var(
+      --pt-card-content-padding-tablet-portrait,
+      var(
+        --pt-card-content-padding-tablet-landscape,
+        var(--pt-card-content-padding-desktop, clamp(1rem, 3vw, 1.5rem))
+      )
+    );
+    --pt-card-gap: var(
+      --pt-card-gap-tablet-portrait,
+      var(
+        --pt-card-gap-tablet-landscape,
+        var(--pt-card-gap-desktop, 1.25rem)
+      )
+    );
+    --pt-card-image-width: var(
+      --pt-card-image-width-tablet-portrait,
+      var(
+        --pt-card-image-width-tablet-landscape,
+        var(--pt-card-image-width-desktop, repeat(2, minmax(0, 1fr)))
+      )
+    );
+    --pt-card-min-height: var(
+      --pt-card-min-height-tablet-portrait,
+      var(
+        --pt-card-min-height-tablet-landscape,
+        var(--pt-card-min-height-desktop, auto)
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    --pt-card-grid-template-columns: var(
+      --pt-card-grid-template-columns-mobile-landscape,
+      var(
+        --pt-card-grid-template-columns-tablet-portrait,
+        var(
+          --pt-card-grid-template-columns-tablet-landscape,
+          var(--pt-card-grid-template-columns-desktop, minmax(0, 1fr))
+        )
+      )
+    );
+    --pt-card-grid-template-areas: var(
+      --pt-card-grid-template-areas-mobile-landscape,
+      var(
+        --pt-card-grid-template-areas-tablet-portrait,
+        var(
+          --pt-card-grid-template-areas-tablet-landscape,
+          var(--pt-card-grid-template-areas-desktop, "image" "content")
+        )
+      )
+    );
+    --pt-card-justify-items: var(
+      --pt-card-justify-items-mobile-landscape,
+      var(
+        --pt-card-justify-items-tablet-portrait,
+        var(
+          --pt-card-justify-items-tablet-landscape,
+          var(--pt-card-justify-items-desktop, start)
+        )
+      )
+    );
+    --pt-card-text-align: var(
+      --pt-card-text-align-mobile-landscape,
+      var(
+        --pt-card-text-align-tablet-portrait,
+        var(
+          --pt-card-text-align-tablet-landscape,
+          var(--pt-card-text-align-desktop, left)
+        )
+      )
+    );
+    --pt-card-align-items: var(
+      --pt-card-align-items-mobile-landscape,
+      var(
+        --pt-card-align-items-tablet-portrait,
+        var(
+          --pt-card-align-items-tablet-landscape,
+          var(--pt-card-align-items-desktop, flex-start)
+        )
+      )
+    );
+    --pt-card-align-content: var(
+      --pt-card-align-content-mobile-landscape,
+      var(
+        --pt-card-align-content-tablet-portrait,
+        var(
+          --pt-card-align-content-tablet-landscape,
+          var(--pt-card-align-content-desktop, start)
+        )
+      )
+    );
+    --pt-card-image-padding: var(
+      --pt-card-image-padding-mobile-landscape,
+      var(
+        --pt-card-image-padding-tablet-portrait,
+        var(
+          --pt-card-image-padding-tablet-landscape,
+          var(--pt-card-image-padding-desktop, 0)
+        )
+      )
+    );
+    --pt-card-content-padding: var(
+      --pt-card-content-padding-mobile-landscape,
+      var(
+        --pt-card-content-padding-tablet-portrait,
+        var(
+          --pt-card-content-padding-tablet-landscape,
+          var(--pt-card-content-padding-desktop, clamp(1rem, 3vw, 1.5rem))
+        )
+      )
+    );
+    --pt-card-gap: var(
+      --pt-card-gap-mobile-landscape,
+      var(
+        --pt-card-gap-tablet-portrait,
+        var(
+          --pt-card-gap-tablet-landscape,
+          var(--pt-card-gap-desktop, 1.25rem)
+        )
+      )
+    );
+    --pt-card-image-width: var(
+      --pt-card-image-width-mobile-landscape,
+      var(
+        --pt-card-image-width-tablet-portrait,
+        var(
+          --pt-card-image-width-tablet-landscape,
+          var(--pt-card-image-width-desktop, repeat(2, minmax(0, 1fr)))
+        )
+      )
+    );
+    --pt-card-min-height: var(
+      --pt-card-min-height-mobile-landscape,
+      var(
+        --pt-card-min-height-tablet-portrait,
+        var(
+          --pt-card-min-height-tablet-landscape,
+          var(--pt-card-min-height-desktop, auto)
+        )
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .card {
+    --pt-card-grid-template-columns: var(
+      --pt-card-grid-template-columns-mobile-portrait,
+      var(
+        --pt-card-grid-template-columns-mobile-landscape,
+        var(
+          --pt-card-grid-template-columns-tablet-portrait,
+          var(
+            --pt-card-grid-template-columns-tablet-landscape,
+            var(--pt-card-grid-template-columns-desktop, minmax(0, 1fr))
+          )
+        )
+      )
+    );
+    --pt-card-grid-template-areas: var(
+      --pt-card-grid-template-areas-mobile-portrait,
+      var(
+        --pt-card-grid-template-areas-mobile-landscape,
+        var(
+          --pt-card-grid-template-areas-tablet-portrait,
+          var(
+            --pt-card-grid-template-areas-tablet-landscape,
+            var(--pt-card-grid-template-areas-desktop, "image" "content")
+          )
+        )
+      )
+    );
+    --pt-card-justify-items: var(
+      --pt-card-justify-items-mobile-portrait,
+      var(
+        --pt-card-justify-items-mobile-landscape,
+        var(
+          --pt-card-justify-items-tablet-portrait,
+          var(
+            --pt-card-justify-items-tablet-landscape,
+            var(--pt-card-justify-items-desktop, start)
+          )
+        )
+      )
+    );
+    --pt-card-text-align: var(
+      --pt-card-text-align-mobile-portrait,
+      var(
+        --pt-card-text-align-mobile-landscape,
+        var(
+          --pt-card-text-align-tablet-portrait,
+          var(
+            --pt-card-text-align-tablet-landscape,
+            var(--pt-card-text-align-desktop, left)
+          )
+        )
+      )
+    );
+    --pt-card-align-items: var(
+      --pt-card-align-items-mobile-portrait,
+      var(
+        --pt-card-align-items-mobile-landscape,
+        var(
+          --pt-card-align-items-tablet-portrait,
+          var(
+            --pt-card-align-items-tablet-landscape,
+            var(--pt-card-align-items-desktop, flex-start)
+          )
+        )
+      )
+    );
+    --pt-card-align-content: var(
+      --pt-card-align-content-mobile-portrait,
+      var(
+        --pt-card-align-content-mobile-landscape,
+        var(
+          --pt-card-align-content-tablet-portrait,
+          var(
+            --pt-card-align-content-tablet-landscape,
+            var(--pt-card-align-content-desktop, start)
+          )
+        )
+      )
+    );
+    --pt-card-image-padding: var(
+      --pt-card-image-padding-mobile-portrait,
+      var(
+        --pt-card-image-padding-mobile-landscape,
+        var(
+          --pt-card-image-padding-tablet-portrait,
+          var(
+            --pt-card-image-padding-tablet-landscape,
+            var(--pt-card-image-padding-desktop, 0)
+          )
+        )
+      )
+    );
+    --pt-card-content-padding: var(
+      --pt-card-content-padding-mobile-portrait,
+      var(
+        --pt-card-content-padding-mobile-landscape,
+        var(
+          --pt-card-content-padding-tablet-portrait,
+          var(
+            --pt-card-content-padding-tablet-landscape,
+            var(--pt-card-content-padding-desktop, clamp(1rem, 3vw, 1.5rem))
+          )
+        )
+      )
+    );
+    --pt-card-gap: var(
+      --pt-card-gap-mobile-portrait,
+      var(
+        --pt-card-gap-mobile-landscape,
+        var(
+          --pt-card-gap-tablet-portrait,
+          var(
+            --pt-card-gap-tablet-landscape,
+            var(--pt-card-gap-desktop, 1.25rem)
+          )
+        )
+      )
+    );
+    --pt-card-image-width: var(
+      --pt-card-image-width-mobile-portrait,
+      var(
+        --pt-card-image-width-mobile-landscape,
+        var(
+          --pt-card-image-width-tablet-portrait,
+          var(
+            --pt-card-image-width-tablet-landscape,
+            var(--pt-card-image-width-desktop, repeat(2, minmax(0, 1fr)))
+          )
+        )
+      )
+    );
+    --pt-card-min-height: var(
+      --pt-card-min-height-mobile-portrait,
+      var(
+        --pt-card-min-height-mobile-landscape,
+        var(
+          --pt-card-min-height-tablet-portrait,
+          var(
+            --pt-card-min-height-tablet-landscape,
+            var(--pt-card-min-height-desktop, auto)
+          )
+        )
+      )
+    );
+  }
+}
+
+@container card (max-width: 767px) {
+  .card .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card[data-has-image='true'][data-column-order='image-content'] .layout {
+    grid-template-areas: "image" "content";
+  }
+
+  .card[data-has-image='true'][data-column-order='content-image'] .layout {
+    grid-template-areas: "content" "image";
+  }
+
+  .card[data-has-image='false'] .layout {
+    grid-template-areas: "content";
+  }
+}

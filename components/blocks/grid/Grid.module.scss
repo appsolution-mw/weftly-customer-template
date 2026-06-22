@@ -1,0 +1,120 @@
+.grid {
+  --pt-grid-columns: var(--pt-grid-columns-desktop, 3);
+  --pt-grid-gap: var(--pt-grid-gap-desktop, 1.5rem);
+
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(var(--pt-grid-columns), minmax(0, 1fr));
+  gap: var(--pt-grid-gap);
+}
+
+@for $columns from 1 through 12 {
+  .grid[data-columns='#{$columns}'] {
+    --pt-grid-columns-desktop: #{$columns};
+  }
+}
+
+.grid[data-gap='none'] {
+  --pt-grid-gap-desktop: 0;
+}
+
+.grid[data-gap='small'] {
+  --pt-grid-gap-desktop: 1rem;
+}
+
+.grid[data-gap='medium'] {
+  --pt-grid-gap-desktop: 1.5rem;
+}
+
+.grid[data-gap='large'] {
+  --pt-grid-gap-desktop: 2.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .grid,
+  .grid[data-columns] {
+    --pt-grid-columns: var(
+      --pt-grid-columns-tablet-landscape,
+      var(--pt-grid-columns-desktop, 3)
+    );
+    --pt-grid-gap: var(
+      --pt-grid-gap-tablet-landscape,
+      var(--pt-grid-gap-desktop, 1.5rem)
+    );
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .grid,
+  .grid[data-columns] {
+    --pt-grid-columns: var(
+      --pt-grid-columns-tablet-portrait,
+      var(--pt-grid-columns-tablet-landscape, var(--pt-grid-columns-desktop, 3))
+    );
+    --pt-grid-gap: var(
+      --pt-grid-gap-tablet-portrait,
+      var(
+        --pt-grid-gap-tablet-landscape,
+        var(--pt-grid-gap-desktop, 1.5rem)
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .grid,
+  .grid[data-columns] {
+    --pt-grid-columns: var(
+      --pt-grid-columns-mobile-landscape,
+      var(
+        --pt-grid-columns-tablet-portrait,
+        var(
+          --pt-grid-columns-tablet-landscape,
+          var(--pt-grid-columns-desktop, 3)
+        )
+      )
+    );
+    --pt-grid-gap: var(
+      --pt-grid-gap-mobile-landscape,
+      var(
+        --pt-grid-gap-tablet-portrait,
+        var(
+          --pt-grid-gap-tablet-landscape,
+          var(--pt-grid-gap-desktop, 1.5rem)
+        )
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .grid,
+  .grid[data-columns] {
+    --pt-grid-columns: var(
+      --pt-grid-columns-mobile-portrait,
+      var(
+        --pt-grid-columns-mobile-landscape,
+        var(
+          --pt-grid-columns-tablet-portrait,
+          var(
+            --pt-grid-columns-tablet-landscape,
+            var(--pt-grid-columns-desktop, 3)
+          )
+        )
+      )
+    );
+    --pt-grid-gap: var(
+      --pt-grid-gap-mobile-portrait,
+      var(
+        --pt-grid-gap-mobile-landscape,
+        var(
+          --pt-grid-gap-tablet-portrait,
+          var(
+            --pt-grid-gap-tablet-landscape,
+            var(--pt-grid-gap-desktop, 1.5rem)
+          )
+        )
+      )
+    );
+  }
+}
