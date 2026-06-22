@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1438px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.container[data-container-width="fluid"] {
+  max-width: none;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}

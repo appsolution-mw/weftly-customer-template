@@ -1,0 +1,105 @@
+.section {
+  --pt-section-spacing: var(--pt-section-spacing-desktop, 3rem 1rem);
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding: var(--pt-section-spacing);
+}
+
+.small {
+  --pt-section-spacing-desktop: 1.5rem 1rem;
+}
+
+.medium {
+  --pt-section-spacing-desktop: 3rem 1rem;
+}
+
+.large {
+  --pt-section-spacing-desktop: 5rem 1rem;
+}
+
+.bgWhite {
+  background: #ffffff;
+}
+
+.bgLightGrey {
+  background: #dddddd;
+}
+
+.bgBrand {
+  background: var(--pt-section-bg, #ffffff);
+}
+
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.backgroundMedia {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    --pt-section-spacing: var(
+      --pt-section-spacing-tablet-landscape,
+      var(--pt-section-spacing-desktop, 3rem 1rem)
+    );
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    --pt-section-spacing: var(
+      --pt-section-spacing-tablet-portrait,
+      var(
+        --pt-section-spacing-tablet-landscape,
+        var(--pt-section-spacing-desktop, 3rem 1rem)
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section {
+    --pt-section-spacing: var(
+      --pt-section-spacing-mobile-landscape,
+      var(
+        --pt-section-spacing-tablet-portrait,
+        var(
+          --pt-section-spacing-tablet-landscape,
+          var(--pt-section-spacing-desktop, 3rem 1rem)
+        )
+      )
+    );
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .section {
+    --pt-section-spacing: var(
+      --pt-section-spacing-mobile-portrait,
+      var(
+        --pt-section-spacing-mobile-landscape,
+        var(
+          --pt-section-spacing-tablet-portrait,
+          var(
+            --pt-section-spacing-tablet-landscape,
+            var(--pt-section-spacing-desktop, 3rem 1rem)
+          )
+        )
+      )
+    );
+  }
+}
