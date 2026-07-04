@@ -3,3 +3,7 @@ out/
 node_modules/
 .vercel
 .env*.local
+
+# build artifacts (auto-generated)
+next-env.d.ts
+*.tsbuildinfo
