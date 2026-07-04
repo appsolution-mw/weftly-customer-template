@@ -1,11 +1,13 @@
 import type { NextConfig } from 'next'
+import path from 'path'
 
 const pullzoneHost = process.env.NEXT_PUBLIC_BUNNY_PULLZONE_HOSTNAME
+const workspaceRoot = path.resolve(__dirname, '../..')
 
 const nextConfig: NextConfig = {
   output: 'standalone',
   transpilePackages: ['@weftly/runtime', '@weftly/loader', '@weftly/host'],
-  turbopack: { root: process.cwd() },
+  turbopack: { root: workspaceRoot },
   experimental: { turbopackFileSystemCacheForDev: false },
   images: {
     remotePatterns: pullzoneHost
