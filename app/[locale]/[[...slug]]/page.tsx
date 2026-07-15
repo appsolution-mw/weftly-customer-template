@@ -69,7 +69,7 @@ function metadataFromSnapshot(snapshot: PublicPageSnapshot): Metadata {
 async function loadSnapshot(locale: string, path: string) {
   const host = (await headers()).get('host')
 
-  return loadPublicPageSnapshot<PublicPageSnapshot>({
+  return loadPublicPageSnapshot({
     host,
     projectId: PROJECT_ID,
     locale,

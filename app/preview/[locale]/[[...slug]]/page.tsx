@@ -20,7 +20,7 @@ export default async function PreviewPage({
   params: Promise<PreviewParams>
   searchParams: Promise<SearchParamsRaw>
 }) {
-  const [{ locale, slug }, rawSearchParams] = await Promise.all([
+  const [{ slug }, rawSearchParams] = await Promise.all([
     params,
     searchParams,
   ])

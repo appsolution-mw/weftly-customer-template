@@ -1,5 +1,4 @@
 import type {
-  BuilderCollectionListPreviewItems,
   CollectionField,
   TreeNode,
 } from '@weftly/runtime'
