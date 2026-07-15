@@ -5,6 +5,7 @@ import {
   PublicSnapshotPageTreeRenderer,
   type PublicPageSnapshot,
 } from '@weftly/loader'
+import * as WeftlyLoader from '@weftly/loader'
 import { WebsiteRenderSurface } from '@weftly/runtime'
 import { DynamicStub } from '../../../components/DynamicStub'
 import { appRegistry } from '../../../lib/registry'
@@ -20,6 +21,27 @@ export const dynamic = 'force-dynamic'
 const PROJECT_ID = process.env.NEXT_PUBLIC_WEFTLY_PROJECT_ID?.trim() || undefined
 
 type PageParams = { locale: string; slug?: string[] }
+
+type CollectionListResolver = (input: {
+  snapshot: PublicPageSnapshot
+  searchParams?: URLSearchParams
+  options?: { tags?: string[] }
+}) => Promise<{
+  snapshot: PublicPageSnapshot
+  errors: Array<{ nodeId: string; reason: string; status?: number }>
+}>
+
+/**
+ * @weftly/loader 0.3.x can render the static collection payload embedded in
+ * a snapshot, but does not export the request-dependent resolver yet. Keep
+ * that release buildable and activate dynamic pagination/filtering as soon as
+ * the installed loader exposes the additive capability.
+ */
+function collectionListResolver(): CollectionListResolver | undefined {
+  return (WeftlyLoader as unknown as {
+    resolvePublicCollectionLists?: CollectionListResolver
+  }).resolvePublicCollectionLists
+}
 
 function faviconIcons(url: string | null | undefined): Metadata['icons'] | undefined {
   return url ? { icon: [{ url }] } : undefined
@@ -108,12 +130,29 @@ export default async function PublicPage({
     return <DynamicStub path={path} />
   }
 
+  const urlParams = toURLSearchParams(rawSearchParams)
+  const resolver = collectionListResolver()
+  const resolved = resolver
+    ? await resolver({
+        snapshot: snapshot.data,
+        searchParams: urlParams,
+        options: { tags: [snapshotCacheTag(locale, path)] },
+      })
+    : { snapshot: snapshot.data, errors: [] }
+  if (resolved.errors.length > 0) {
+    console.warn('[public-runtime] collection list resolution failed', {
+      path,
+      locale,
+      errors: resolved.errors,
+    })
+  }
+
   return (
     <WebsiteRenderSurface>
       <PublicSnapshotPageTreeRenderer
-        snapshot={snapshot.data}
+        snapshot={resolved.snapshot}
         registry={appRegistry}
-        urlParams={toURLSearchParams(rawSearchParams)}
+        urlParams={urlParams}
         now={new Date()}
       />
     </WebsiteRenderSurface>
