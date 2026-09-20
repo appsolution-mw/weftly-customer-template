@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
 import { reportConnection } from '@weftly/loader'
-import { DynamicStub } from '../../../../components/DynamicStub'
+import { PreviewStatus } from '../../../../components/preview/PreviewStatus'
 import { LivePreviewClient } from '../../../../components/preview/LivePreviewClient'
 import {
   pathFromSlug,
@@ -41,7 +41,7 @@ export default async function PreviewPage({
       parentOrigin={parentOrigin}
       searchParamEntries={toSearchParamEntries(rawSearchParams)}
     >
-      <DynamicStub path={path} />
+      <PreviewStatus parentOrigin={parentOrigin} path={path} />
     </LivePreviewClient>
   )
 }
