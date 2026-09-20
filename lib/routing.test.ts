@@ -3,6 +3,7 @@ import { describe, it } from 'node:test'
 
 import {
   collectPreviewParentOrigins,
+  contentEnvironment,
   defaultLocale,
   isPublicContentState,
   pathFromSlug,
@@ -111,5 +112,20 @@ describe('routing helpers', () => {
     assert.equal(tag.length <= 256, true)
     assert.equal(longLocaleTag.length <= 256, true)
     assert.equal(snapshotCacheTag('de', '/products'), 'public-content:de:/products')
+  })
+})
+
+
+describe('deployment content environment', () => {
+  it('keeps published content as the backwards-compatible default', () => {
+    assert.equal(contentEnvironment(''), 'production')
+    assert.equal(contentEnvironment('  '), 'production')
+    assert.equal(contentEnvironment('production'), 'production')
+  })
+  it('selects staged content only through explicit deployment configuration', () => {
+    assert.equal(contentEnvironment('staging'), 'staging')
+    assert.equal(contentEnvironment(' staging '), 'staging')
+    assert.throws(() => contentEnvironment('preview'), /WEFTLY_ENVIRONMENT/)
+    assert.throws(() => contentEnvironment('DRAFT'), /WEFTLY_ENVIRONMENT/)
   })
 })

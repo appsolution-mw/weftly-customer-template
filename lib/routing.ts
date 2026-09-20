@@ -1,5 +1,12 @@
 export type SearchParamsRaw = { [key: string]: string | string[] | undefined }
 
+export function contentEnvironment(value = process.env.WEFTLY_ENVIRONMENT): 'staging' | 'production' {
+  if (!value?.trim()) return 'production'
+  if (value.trim() === 'staging') return 'staging'
+  if (value.trim() === 'production') return 'production'
+  throw new Error('WEFTLY_ENVIRONMENT must be staging or production')
+}
+
 export type PreviewState = 'DRAFT' | 'STAGED' | 'PUBLISHED'
 
 const SUPPORTED_ORIGIN_PROTOCOLS = new Set(['http:', 'https:'])

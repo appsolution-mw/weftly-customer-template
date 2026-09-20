@@ -10,6 +10,7 @@ import { WebsiteRenderSurface } from '@weftly/runtime'
 import { DynamicStub } from '../../../components/DynamicStub'
 import { appRegistry } from '../../../lib/registry'
 import {
+  contentEnvironment,
   pathFromSlug,
   snapshotCacheTag,
   toURLSearchParams,
@@ -96,7 +97,7 @@ async function loadSnapshot(locale: string, path: string) {
     projectId: PROJECT_ID,
     locale,
     path,
-    state: 'PUBLISHED',
+    environment: contentEnvironment(),
     tags: [snapshotCacheTag(locale, path)],
   })
 }
@@ -109,7 +110,10 @@ export async function generateMetadata({
   const { locale, slug } = await params
   const snapshot = await loadSnapshot(locale, pathFromSlug(slug))
 
-  return snapshot.ok ? metadataFromSnapshot(snapshot.data) : {}
+  const metadata = snapshot.ok ? metadataFromSnapshot(snapshot.data) : {}
+  return contentEnvironment() === 'staging'
+    ? { ...metadata, robots: { index: false, follow: false } }
+    : metadata
 }
 
 export default async function PublicPage({

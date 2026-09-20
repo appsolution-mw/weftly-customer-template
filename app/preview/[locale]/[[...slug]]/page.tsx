@@ -1,8 +1,11 @@
 import { headers } from 'next/headers'
+import { after } from 'next/server'
+import type { Metadata } from 'next'
 import { reportConnection } from '@weftly/loader'
 import { PreviewStatus } from '../../../../components/preview/PreviewStatus'
 import { LivePreviewClient } from '../../../../components/preview/LivePreviewClient'
 import {
+  contentEnvironment,
   pathFromSlug,
   resolvePreviewParentOrigin,
   toSearchParamEntries,
@@ -10,6 +13,7 @@ import {
 } from '../../../../lib/routing'
 
 export const dynamic = 'force-dynamic'
+export const metadata: Metadata = { robots: { index: false, follow: false } }
 
 type PreviewParams = { locale: string; slug?: string[] }
 
@@ -32,9 +36,12 @@ export default async function PreviewPage({
 
   // Best-effort, throttled connection heartbeat: tells the builder this deployed
   // site (at this host) holds the project's API key → the builder marks the
-  // matching SiteDomain verified. Never awaited/blocking; swallows failures.
+  // matching SiteDomain verified. after() keeps the request alive on Vercel.
   const requestHost = (await headers()).get('host')
-  if (requestHost) void reportConnection({ host: requestHost, environment: 'production' })
+  const environment = contentEnvironment()
+  if (requestHost) {
+    after(() => reportConnection({ host: requestHost, environment }))
+  }
 
   return (
     <LivePreviewClient

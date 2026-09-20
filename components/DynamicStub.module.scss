@@ -1,0 +1,25 @@
+.page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #f6f7f9;
+  color: #24272e;
+  font-family: system-ui, sans-serif;
+}
+
+.card {
+  width: min(100%, 580px);
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid #e3e5eb;
+  border-radius: 16px;
+  background: #fff;
+
+  h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.2; }
+  p { line-height: 1.65; }
+  a { display: inline-block; margin: 12px 0; color: #4937bf; font-weight: 600; }
+  a:focus-visible { outline: 2px solid #4937bf; outline-offset: 4px; }
+}
+
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; }
+.hint { color: #676d79; font-size: 13px; }
