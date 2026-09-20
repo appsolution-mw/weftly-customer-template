@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 import path from 'path'
 import { existsSync } from 'fs'
+import { collectPreviewParentOrigins } from './lib/routing'
 
 const pullzoneHost = process.env.NEXT_PUBLIC_BUNNY_PULLZONE_HOSTNAME
 
@@ -15,6 +16,10 @@ const turbopackRoot = existsSync(path.join(monorepoRoot, 'pnpm-workspace.yaml'))
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  // LAN previews need the dev WebSocket too: Next's React debug stream uses
+  // it during hydration, before the builder's iframe bridge can start.
+  allowedDevOrigins: collectPreviewParentOrigins(process.env.WEFTLY_BUILDER_ORIGINS)
+    .map((origin) => new URL(origin).hostname),
   transpilePackages: ['@weftly/runtime', '@weftly/loader', '@weftly/host'],
   turbopack: { root: turbopackRoot },
   experimental: { turbopackFileSystemCacheForDev: false },
